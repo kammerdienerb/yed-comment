@@ -100,6 +100,7 @@ int comment_toggle_line(yed_frame *frame, yed_line *line, int row) {
 
     } else if (frame->buffer->ft == yed_get_ft("Shell")  ||
                frame->buffer->ft == yed_get_ft("bJou")   ||
+               frame->buffer->ft == yed_get_ft("Config") ||
                frame->buffer->ft == yed_get_ft("Python") ||
                frame->buffer->ft == yed_get_ft("yedrc")) {
         comment_toggle_line_hash(frame, line, row);
