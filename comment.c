@@ -75,7 +75,7 @@ int comment_toggle_line(yed_frame *frame, yed_line *line, int row) {
     int         err;
     char       *style;
     char        var_buff[256];
-    array_t     words;
+    char       *cpy;
     int         len;
     const char *start;
     const char *end;
@@ -91,20 +91,19 @@ int comment_toggle_line(yed_frame *frame, yed_line *line, int row) {
         goto out;
     }
 
-    words = sh_split(style);
+    cpy   = strdup(style);
+    start = strtok(cpy, " ");
+    end   = strtok(NULL, " ");
 
-    if ((len = array_len(words)) <= 0) {
+    if (start == NULL) {
         err = 1;
         goto out;
     }
 
-    start = *(char**)array_item(words, 0);
-    end   = len > 1 ? *(char**)array_item(words, 1) : NULL;
-
     toggle_line(frame, line, row, start, end);
 
 out:;
-    array_free(words);
+    free(cpy);
     return err;
 }
 
