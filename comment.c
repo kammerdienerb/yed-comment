@@ -117,6 +117,9 @@ void toggle_line(yed_frame *frame, yed_line *line, int row, const char *start, c
     yed_glyph *g;
 
     line_len  = line->visual_width;
+
+    if (line_len == 0) { return; }
+
     start_len = strlen(start);
     end_len   = end == NULL ? 0 : strlen(end);
 
