@@ -97,13 +97,14 @@ int comment_toggle_line(yed_frame *frame, yed_line *line, int row) {
 
     if (start == NULL) {
         err = 1;
-        goto out;
+        goto out_free;
     }
 
     toggle_line(frame, line, row, start, end);
 
-out:;
+out_free:;
     free(cpy);
+out:;
     return err;
 }
 
