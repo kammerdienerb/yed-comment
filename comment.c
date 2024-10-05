@@ -157,15 +157,15 @@ void comment_line(yed_frame *frame, int row, const char *start, const char *end)
     start_len = strlen(start);
     end_len   = end == NULL ? 0 : strlen(end);
 
-    yed_insert_into_line(frame->buffer, row, 1, G(' '));
+    yed_insert_into_line(frame->buffer, row, 1, GLYPH(" "));
     for (i = 0; i < start_len; i += 1) {
-        yed_insert_into_line(frame->buffer, row, 1, G(start[start_len - i - 1]));
+        yed_insert_into_line(frame->buffer, row, 1, GLYPH(&start[start_len - i - 1]));
     }
 
     if (end != NULL) {
-        yed_append_to_line(frame->buffer, row, G(' '));
+        yed_append_to_line(frame->buffer, row, GLYPH(" "));
         for (i = 0; i < end_len; i += 1) {
-            yed_append_to_line(frame->buffer, row, G(end[i]));
+            yed_append_to_line(frame->buffer, row, GLYPH(&end[i]));
         }
     }
 }
